@@ -7,8 +7,8 @@ def arithmetic_arranger(problems, ans=False):
     operator = [i.split()[1] for i in problems]
     
     operation = {
-        '+': lambda x, y : x + y, 
-        '-': lambda x, y : x - y 
+        '+': lambda a, b: a + b,
+        '-': lambda a, b: a - b
     }
 
     for i in operator:
@@ -25,14 +25,23 @@ def arithmetic_arranger(problems, ans=False):
         elif len(x) > 4 or len(y) > 4:
             return 'Error: Numbers cannot be more than four digits.'
         else:
-            temp = len(x) if x >= y else len(y)
+            temp = len(x) if int(x) > int(y) else len(y)
             longest_number.append(temp)
 
-    return f'{longest_number=}'
+    for num1, length in zip(number_1, longest_number):
+        problems_result += (' ' * (length - len(num1))) + num1 + '  '
+
+    problems_result += '\n'
+
+    for num2, length in zip(number_2, longest_number):
+        problems_result += (' ' * (length - len(num2))) + num2 + '  '
+
+    return problems_result
 
 
 def main():
-    print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "123 + 49"]))
-    
+    print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "1234 + 49"]))
+
+
 if __name__ == "__main__":
     main()
