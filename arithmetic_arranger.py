@@ -29,18 +29,23 @@ def arithmetic_arranger(problems, ans=False):
             longest_number.append(temp)
 
     for num1, length in zip(number_1, longest_number):
-        problems_result += (' ' * (length - len(num1))) + num1 + '  '
+        problems_result += '  '+(' ' * (length - len(num1))) + num1 + '    '
 
     problems_result += '\n'
 
-    for num2, length in zip(number_2, longest_number):
-        problems_result += (' ' * (length - len(num2))) + num2 + '  '
+    for op, num2, length in zip(operator, number_2, longest_number):
+        problems_result += op + ' ' + (' ' * (length - len(num2))) + num2 + '    '
+
+    problems_result += '\n'
+
+    for i in range(len(problems)):
+        problems_result += ('-' * (longest_number[i]+2)) + '    '
 
     return problems_result
 
 
 def main():
-    print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "1234 + 49"]))
+    print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "123 + 49"]))
 
 
 if __name__ == "__main__":
