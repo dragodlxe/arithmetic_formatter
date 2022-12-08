@@ -1,4 +1,4 @@
-def arithmetic_arranger(problems, ans=False):
+def arithmetic_arranger(problems: list, ans=False):
     
     if len(problems) > 5:
         return 'Error: Too many problems.'
@@ -31,16 +31,27 @@ def arithmetic_arranger(problems, ans=False):
     for num1, length in zip(number_1, longest_number):
         problems_result += '  '+(' ' * (length - len(num1))) + num1 + '    '
 
+    problems_result = problems_result.rstrip()
     problems_result += '\n'
 
     for op, num2, length in zip(operator, number_2, longest_number):
         problems_result += op + ' ' + (' ' * (length - len(num2))) + num2 + '    '
 
+    problems_result = problems_result.rstrip()
     problems_result += '\n'
 
     for i in range(len(problems)):
         problems_result += ('-' * (longest_number[i]+2)) + '    '
 
+    problems_result = problems_result.rstrip()
+    if ans:
+        problems_result += '\n'
+
+        for num1, op, num2 in zip(number_1, operator, number_2):
+            temp = operation[op](int(num1), int(num2))
+            problems_result += '  ' + str(temp) + '   '
+
+    problems_result = problems_result.rstrip()
     return problems_result
 
 
