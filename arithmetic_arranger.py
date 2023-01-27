@@ -44,19 +44,21 @@ def arithmetic_arranger(problems: list, ans=False):
         problems_result += ('-' * (longest_number[i]+2)) + '    '
 
     problems_result = problems_result.rstrip()
+    
     if ans:
         problems_result += '\n'
 
-        for num1, op, num2 in zip(number_1, operator, number_2):
+        for num1, op, num2, length in zip(number_1, operator, number_2, longest_number):
             temp = operation[op](int(num1), int(num2))
-            problems_result += '  ' + str(temp) + '   '
+            problems_result += ' ' * (length+2-len(str(temp))) + str(temp) + '    '
+            
 
     problems_result = problems_result.rstrip()
     return problems_result
 
 
 def main():
-    print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "123 + 49"]))
+    print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "123 + 49"], True))
 
 
 if __name__ == "__main__":
